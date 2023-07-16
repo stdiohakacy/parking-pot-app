@@ -57,7 +57,7 @@ Abstract Factory design pattern
 
 Factory design pattern
 
-================================================================================================
+====================================================================================
 
 ### Requirements for the Parking Lot Design
 
@@ -76,7 +76,7 @@ R9: The customer can pay for the ticket either with an automated exit panel or p
 R10: The payment should be calculated at an hourly rate.
 R11: Payment can be made using either a credit/debit card or cash.
 
-================================================================================================
+====================================================================================
 
 ### Use Case Diagram for the Parking Lot
 
@@ -144,14 +144,14 @@ The “Parking agent” has a generalization relationship with the “Customer�
 ### Associations
 The table below shows the association relationship between actors and their use cases.
 
-================================================================================================
+====================================================================================
 
 ### Design pattern
 The system itself will have a ParkingLot class. It will use the Singleton design pattern, because there will only be a single instance of the parking lot system.
 
 This parking lot system is also composed of smaller objects that we have already designed, like entrance, exit, parking spots, parking rates, etc. Therefore, it will be a good practice to use the Abstract Factory and Factory design pattern to instantiate all those objects.
 
-================================================================================================
+====================================================================================
 
 ### Additional requirements
 The interviewer can introduce some additional requirements in the parking lot system, or they can ask some follow-up questions. Let’s see some examples of additional requirements:
