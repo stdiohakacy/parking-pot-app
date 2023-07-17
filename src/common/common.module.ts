@@ -11,6 +11,10 @@ import { PaginationModule } from './pagination/pagination.module';
 import { ErrorModule } from './error/error.module';
 import { MessageModule } from './message/message.module';
 import { ResponseModule } from './response/response.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { DatabaseOptionService } from './database/services/database.options.service';
+import { addTransactionalDataSource } from 'typeorm-transactional';
+import { DataSource } from 'typeorm';
 
 @Module({
     controllers: [],
@@ -114,19 +118,19 @@ import { ResponseModule } from './response/response.module';
             },
         }),
 
-        // TypeOrmModule.forRootAsync({
-        //     imports: [DatabaseOptionsModule],
-        //     useFactory: (dbOptionService: DatabaseOptionService) => {
-        //         return dbOptionService.createOption();
-        //     },
-        //     inject: [DatabaseOptionService],
-        //     dataSourceFactory: async (options) => {
-        //         if (!options) {
-        //             throw new Error('Invalid options passed');
-        //         }
-        //         return addTransactionalDataSource(new DataSource(options));
-        //     },
-        // }),
+        TypeOrmModule.forRootAsync({
+            imports: [DatabaseOptionsModule],
+            useFactory: (dbOptionService: DatabaseOptionService) => {
+                return dbOptionService.createOption();
+            },
+            inject: [DatabaseOptionService],
+            dataSourceFactory: async (options) => {
+                if (!options) {
+                    throw new Error('Invalid options passed');
+                }
+                return addTransactionalDataSource(new DataSource(options));
+            },
+        }),
         DatabaseOptionsModule,
         HelperModule,
         PaginationModule,

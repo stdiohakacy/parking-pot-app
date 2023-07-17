@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 
-import { IApiKeyService } from 'src/common/api-key/interfaces/api-key.service.interface';
-import { IApiKeyCreated } from 'src/common/api-key/interfaces/api-key.interface';
-import { HelperStringService } from 'src/common/helper/services/helper.string.service';
+import { IApiKeyService } from '../../../common/api-key/interfaces/api-key.service.interface';
+import { IApiKeyCreated } from '../../../common/api-key/interfaces/api-key.interface';
+import { HelperStringService } from '../../../common/helper/services/helper.string.service';
 import { ConfigService } from '@nestjs/config';
-import { HelperHashService } from 'src/common/helper/services/helper.hash.service';
+import { HelperHashService } from '../../../common/helper/services/helper.hash.service';
 import {
     ApiKeyCreateDto,
     ApiKeyCreateRawDto,
-} from 'src/common/api-key/dtos/api-key.create.dto';
-import { ApiKeyUpdateDto } from 'src/common/api-key/dtos/api-key.update.dto';
-import { ApiKeyUpdateDateDto } from 'src/common/api-key/dtos/api-key.update-date.dto';
-import { HelperDateService } from 'src/common/helper/services/helper.date.service';
-import { ApiKeyEntity } from 'src/modules/api-key/entities/api-key.entity';
+} from '../../../common/api-key/dtos/api-key.create.dto';
+import { ApiKeyUpdateDto } from '../../../common/api-key/dtos/api-key.update.dto';
+import { ApiKeyUpdateDateDto } from '../../../common/api-key/dtos/api-key.update-date.dto';
+import { HelperDateService } from '../../../common/helper/services/helper.date.service';
+import { ApiKeyEntity } from '../../../modules/api-key/entities/api-key.entity';
 
 @Injectable()
 export class ApiKeyService implements IApiKeyService {

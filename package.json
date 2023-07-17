@@ -6,6 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "typeorm": "typeorm-ts-node-esm",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -18,7 +19,10 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "migration:generate": "yarn run typeorm migration:generate -d ormconfig",
+    "migration:create": "yarn run typeorm migration:create -d ormconfig",
+    "migration:run": "yarn run typeorm migration:run -d ormconfig"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.370.0",

@@ -1,7 +1,10 @@
-import { ENUM_API_KEY_TYPE } from 'src/common/api-key/constants/api-key.enum.constant';
-import { ApiKeyDTO } from 'src/common/api-key/dtos/api-key.dto';
-import { UseDTO } from 'src/common/base/decorators/use-dto.decorator';
-import { BaseEntity, IBaseEntity } from 'src/common/base/entity/base.entity';
+import { ENUM_API_KEY_TYPE } from '../../../common/api-key/constants/api-key.enum.constant';
+import { ApiKeyDTO } from '../../../common/api-key/dtos/api-key.dto';
+import { UseDTO } from '../../../common/base/decorators/use-dto.decorator';
+import {
+    BaseEntity,
+    IBaseEntity,
+} from '../../../common/base/entity/base.entity';
 import { Column, Entity } from 'typeorm';
 
 export interface IApiKeyEntity extends IBaseEntity<ApiKeyDTO> {
