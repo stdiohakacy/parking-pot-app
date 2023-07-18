@@ -15,6 +15,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DatabaseOptionService } from './database/services/database.options.service';
 import { addTransactionalDataSource } from 'typeorm-transactional';
 import { DataSource } from 'typeorm';
+import { DebuggerModule } from './debugger/debugger.module';
+import { RequestModule } from './request/request.module';
 
 @Module({
     controllers: [],
@@ -111,6 +113,19 @@ import { DataSource } from 'typeorm';
                 SSO_GOOGLE_CLIENT_SECRET: Joi.string()
                     .allow(null, '')
                     .optional(),
+
+                DEBUGGER_HTTP_WRITE_INTO_FILE: Joi.boolean()
+                    .default(false)
+                    .required(),
+                DEBUGGER_HTTP_WRITE_INTO_CONSOLE: Joi.boolean()
+                    .default(false)
+                    .required(),
+                DEBUGGER_SYSTEM_WRITE_INTO_FILE: Joi.boolean()
+                    .default(false)
+                    .required(),
+                DEBUGGER_SYSTEM_WRITE_INTO_CONSOLE: Joi.boolean()
+                    .default(false)
+                    .required(),
             }),
             validationOptions: {
                 allowUnknown: true,
@@ -137,6 +152,8 @@ import { DataSource } from 'typeorm';
         ErrorModule,
         MessageModule,
         ResponseModule,
+        RequestModule,
+        DebuggerModule.forRoot(),
     ],
 })
 export class CommonModule {}

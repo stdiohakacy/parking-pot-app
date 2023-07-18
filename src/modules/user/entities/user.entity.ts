@@ -11,12 +11,14 @@ import {
 } from '../constants/user.enum.constant';
 import { ProfileDTO } from '../dtos/profile.dto';
 import { ParkingLotEntity } from '../../../modules/parking-lot/entities/parking-lot.entity';
+import { UserRegisterDTO } from '../dtos/user.register.dto';
+import { ProfileRegisterDTO } from '../dtos/profile.register.dto';
 
 export interface IUserEntity extends IBaseEntity<UserDTO> {
     username: string;
     password: string;
     status: ENUM_USER_STATUS;
-    profile: ProfileDTO;
+    profile: ProfileRegisterDTO;
 }
 @Entity({ name: 'users' })
 @UseDTO(UserDTO)
@@ -42,7 +44,7 @@ export class UserEntity extends BaseEntity<UserDTO> implements IUserEntity {
     type: ENUM_USER_TYPE;
 
     @Column({ name: 'profile', type: 'jsonb' })
-    profile: ProfileDTO;
+    profile: ProfileRegisterDTO;
 
     @Column({ name: 'parkingLotId', type: 'uuid' })
     parkingLotId: string;
@@ -50,4 +52,11 @@ export class UserEntity extends BaseEntity<UserDTO> implements IUserEntity {
     @ManyToOne(() => ParkingLotEntity, (parkingLot) => parkingLot.users)
     @JoinColumn({ name: 'parkingLotId' })
     parkingLot?: ParkingLotEntity;
+
+    register(payload: UserRegisterDTO) {
+        const { username, password, profile } = payload;
+        this.username = username;
+        this.password = password;
+        this.profile = profile;
+    }
 }

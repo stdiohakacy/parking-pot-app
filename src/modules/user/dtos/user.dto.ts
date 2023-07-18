@@ -14,7 +14,7 @@ import {
     ENUM_USER_STATUS,
     ENUM_USER_TYPE,
 } from '../constants/user.enum.constant';
-import { ProfileDTO } from './profile.dto';
+import { ProfileRegisterDTO } from './profile.register.dto';
 
 export class UserDTO extends BaseDTO {
     @ApiProperty({
@@ -63,5 +63,5 @@ export class UserDTO extends BaseDTO {
     @IsNotEmpty()
     type: ENUM_USER_TYPE;
 
-    profile: ProfileDTO;
+    profile: ProfileRegisterDTO;
 }

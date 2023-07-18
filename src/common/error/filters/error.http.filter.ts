@@ -26,13 +26,14 @@ import {
 } from '../../../common/message/interfaces/message.interface';
 import { MessageService } from '../../../common/message/services/message.service';
 import { IRequestApp } from '../../../common/request/interfaces/request.interface';
+import { DebuggerService } from '../../../common/debugger/services/debugger.service';
 
 // If we throw error with HttpException, there will always return object
 // The exception filter only catch HttpException
 @Catch()
 export class ErrorHttpFilter implements ExceptionFilter {
     constructor(
-        // @Optional() private readonly debuggerService: DebuggerService,
+        @Optional() private readonly debuggerService: DebuggerService,
         private readonly configService: ConfigService,
         private readonly messageService: MessageService,
         private readonly helperDateService: HelperDateService
@@ -65,22 +66,22 @@ export class ErrorHttpFilter implements ExceptionFilter {
             request.__repoVersion ??
             this.configService.get<string>('app.repoVersion');
 
-        // Debugger
-        // try {
-        //   this.debuggerService.error(
-        //     request?.__id ? request.__id : ErrorHttpFilter.name,
-        //     {
-        //       description:
-        //         exception instanceof Error
-        //           ? exception.message
-        //           : exception.toString(),
-        //       class: __class ?? ErrorHttpFilter.name,
-        //       function: __function ?? this.catch.name,
-        //       path: __path,
-        //     },
-        //     exception,
-        //   );
-        // } catch (err: unknown) {}
+        // Debugger;
+        try {
+            this.debuggerService.error(
+                request?.__id ? request.__id : ErrorHttpFilter.name,
+                {
+                    description:
+                        exception instanceof Error
+                            ? exception.message
+                            : exception.toString(),
+                    class: __class ?? ErrorHttpFilter.name,
+                    function: __function ?? this.catch.name,
+                    path: __path,
+                },
+                exception
+            );
+        } catch (err: unknown) {}
 
         // set default
         let statusHttp: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
