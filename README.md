@@ -162,6 +162,67 @@ Electric: The parking lot should have some parking spots specified for electric 
 
 ====================================================================================
 
+### RESTful APIs
+Display Board APIs:
+
+GET /display-boards: Retrieve information about all display boards.
+GET /display-boards/{id}: Retrieve information about a specific display board.
+PUT /display-boards/{id}: Update the information of a display board.
+Entrance APIs:
+
+GET /entrances: Retrieve information about all entrances.
+GET /entrances/{id}: Retrieve information about a specific entrance.
+PUT /entrances/{id}: Update the information of an entrance.
+Exit APIs:
+
+GET /exits: Retrieve information about all exits.
+GET /exits/{id}: Retrieve information about a specific exit.
+PUT /exits/{id}: Update the information of an exit.
+Parking Lot APIs:
+
+GET /parking-lots: Retrieve information about all parking lots.
+GET /parking-lots/{id}: Retrieve information about a specific parking lot.
+PUT /parking-lots/{id}: Update the information of a parking lot.
+Parking Rate APIs:
+
+GET /parking-rates: Retrieve information about all parking rates.
+GET /parking-rates/{id}: Retrieve information about a specific parking rate.
+PUT /parking-rates/{id}: Update the information of a parking rate.
+Parking Spot APIs:
+
+GET /parking-spots: Retrieve information about all parking spots.
+GET /parking-spots/{id}: Retrieve information about a specific parking spot.
+PUT /parking-spots/{id}: Update the information of a parking spot.
+Parking Ticket APIs:
+
+GET /parking-tickets: Retrieve information about all parking tickets.
+GET /parking-tickets/{id}: Retrieve information about a specific parking ticket.
+POST /parking-tickets: Generate a new parking ticket.
+PUT /parking-tickets/{id}: Update the information of a parking ticket.
+Payment APIs:
+
+GET /payments: Retrieve information about all payments.
+GET /payments/{id}: Retrieve information about a specific payment.
+POST /payments: Process a new payment.
+User APIs:
+
+GET /users: Retrieve information about all users.
+GET /users/{id}: Retrieve information about a specific user.
+POST /users: Create a new user.
+PUT /users/{id}: Update the information of a user.
+Vehicle APIs:
+
+GET /vehicles: Retrieve information about all vehicles.
+GET /vehicles/{id}: Retrieve information about a specific vehicle.
+POST /vehicles: Add a new vehicle.
+PUT /vehicles/{id}: Update the information of a vehicle.
+Authentication APIs:
+
+POST /auth/login: Authenticate a user and retrieve an access token.
+
+====================================================================================
+### Design Patterns
+
 Several design patterns can be applicable in the context of the above requirements. Here are some design patterns that can be considered:
 
 Singleton Pattern:
