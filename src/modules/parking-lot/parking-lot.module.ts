@@ -4,14 +4,15 @@ import { ParkingLotEntity } from './entities/parking-lot.entity';
 import { ParkingLotRepository } from './repositories/parking-lot.repository';
 import { ParkingLotCreateHandler } from './commands/parking-lot.create.command';
 import { CqrsModule } from '@nestjs/cqrs';
+import { ParkingLotListHandler } from './queries/parking-lot.list.query';
 
 const commandHandlers = [ParkingLotCreateHandler];
-const queryHandlers = [];
+const queryHandlers = [ParkingLotListHandler];
 
 @Module({
     imports: [TypeOrmModule.forFeature([ParkingLotEntity]), CqrsModule],
     exports: [CqrsModule, ParkingLotRepository],
-    providers: [...commandHandlers, ParkingLotRepository],
+    providers: [...commandHandlers, ...queryHandlers, ParkingLotRepository],
     controllers: [],
 })
 export class ParkingLotModule {}

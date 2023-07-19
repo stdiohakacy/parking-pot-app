@@ -4,12 +4,25 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { IUserRepository } from '../interfaces/user.repository.interface';
 import { BaseRepository } from 'src/common/base/repository/base.repository.abstract';
+import { PaginationListDTO } from 'src/common/pagination/dtos/pagination.list.dto';
 
 @Injectable()
 export class UserRepository
     extends BaseRepository<UserEntity>
     implements IUserRepository
 {
+    async findAllAndCount(
+        find: Record<string, any>,
+        pagination: PaginationListDTO
+    ) {
+        const { _limit, _offset, _order } = pagination;
+        return await this.userRepo.findAndCount({
+            where: find,
+            take: _limit,
+            skip: _offset,
+            order: _order,
+        });
+    }
     constructor(
         @InjectRepository(UserEntity)
         private userRepo: Repository<UserEntity>

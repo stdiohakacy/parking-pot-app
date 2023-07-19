@@ -3,5 +3,6 @@
         "nameExist": "Parking lot name already exists",
         "notFound": "Parking lot not found"
     },
-    "create": "Parking lot create"
+    "create": "Parking lot create",
+    "list": "Parking lot list"
 }
