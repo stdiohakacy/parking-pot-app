@@ -17,7 +17,7 @@ export class ParkingLotGetHandler implements IQueryHandler<ParkingLotGetQuery> {
         if (!parkingLot) {
             throw new NotFoundException({
                 statusCode:
-                    ENUM_PARKING_LOT_STATUS_CODE_ERROR.PARKING_LOT_FOUND_ERROR,
+                    ENUM_PARKING_LOT_STATUS_CODE_ERROR.PARKING_LOT_NOT_FOUND_ERROR,
                 message: 'parkingLot.error.notFound',
             });
         }

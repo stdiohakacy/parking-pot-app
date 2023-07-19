@@ -1,3 +1,7 @@
 {
-    "create":"Entrance created"
+    "create":"Entrance created",
+    "get":"Get entrance",
+    "error": {
+        "notFound": "Entrance not found!"
+    }
 }

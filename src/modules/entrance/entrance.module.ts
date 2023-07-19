@@ -5,9 +5,10 @@ import { EntranceCreateHandler } from './commands/entrance.create.command';
 import { EntranceRepository } from './repositories/entrance.repository';
 import { ParkingLotModule } from '../parking-lot/parking-lot.module';
 import { EntranceListHandler } from './queries/entrance.list.query';
+import { EntranceGetHandler } from './queries/entrance.get.query';
 
 const commandHandlers = [EntranceCreateHandler];
-const queryHandlers = [EntranceListHandler];
+const queryHandlers = [EntranceListHandler, EntranceGetHandler];
 
 @Module({
     imports: [TypeOrmModule.forFeature([EntranceEntity]), ParkingLotModule],

@@ -8,8 +8,8 @@ import { AuthService } from '../../../common/auth/services/auth.service';
 import { ENUM_USER_TYPE } from '../constants/user.enum.constant';
 import { Admin } from '../instances/admin';
 import { ParkingAgent } from '../instances/parking-agent';
-import { ParkingLotRepository } from 'src/modules/parking-lot/repositories/parking-lot.repository';
-import { ENUM_PARKING_LOT_STATUS_CODE_ERROR } from 'src/modules/parking-lot/constants/parking-lot.status-code.constant';
+import { ParkingLotRepository } from '../../../modules/parking-lot/repositories/parking-lot.repository';
+import { ENUM_PARKING_LOT_STATUS_CODE_ERROR } from '../../../modules/parking-lot/constants/parking-lot.status-code.constant';
 import { UserEntity } from '../entities/user.entity';
 
 export class UserRegisterCommand implements ICommand {
@@ -37,7 +37,7 @@ export class UserRegisterHandler
         if (!parkingLotExist) {
             throw new NotFoundException({
                 statusCode:
-                    ENUM_PARKING_LOT_STATUS_CODE_ERROR.PARKING_LOT_FOUND_ERROR,
+                    ENUM_PARKING_LOT_STATUS_CODE_ERROR.PARKING_LOT_NOT_FOUND_ERROR,
                 message: 'parkingLot.error.notFound',
             });
         }

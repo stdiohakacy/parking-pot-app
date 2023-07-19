@@ -10,6 +10,8 @@ import {
 } from '../../../common/doc/decorators/doc.decorator';
 import { InsertResult } from 'typeorm';
 import { EntranceListSerialization } from '../serializations/parking-lot.list.serialization';
+import { EntranceGetSerialization } from '../serializations/entrance.get.serialization';
+import { EntranceDocParamsId } from '../constants/entrance.doc.constant';
 
 export function EntranceAdminCreateDoc(): MethodDecorator {
     return applyDecorators(
@@ -32,6 +34,18 @@ export function EntranceAdminListDoc(): MethodDecorator {
         DocGuard({ role: true, policy: true }),
         DocResponsePaging<EntranceListSerialization>('entrance.list', {
             serialization: EntranceListSerialization,
+        })
+    );
+}
+
+export function EntranceAdminGetDoc(): MethodDecorator {
+    return applyDecorators(
+        Doc({ operation: 'modules.admin.entrance' }),
+        DocRequest({ params: EntranceDocParamsId }),
+        DocAuth({ jwtAccessToken: true }),
+        DocGuard({ role: true, policy: true }),
+        DocResponse<EntranceGetSerialization>('entrance.get', {
+            serialization: EntranceGetSerialization,
         })
     );
 }
