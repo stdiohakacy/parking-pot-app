@@ -10,7 +10,7 @@ const queryHandlers = [];
 
 @Module({
     imports: [TypeOrmModule.forFeature([ParkingLotEntity]), CqrsModule],
-    exports: [CqrsModule],
+    exports: [CqrsModule, ParkingLotRepository],
     providers: [...commandHandlers, ParkingLotRepository],
     controllers: [],
 })

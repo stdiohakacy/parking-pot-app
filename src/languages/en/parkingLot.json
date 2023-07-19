@@ -1,6 +1,7 @@
 {
     "error": {
-        "nameExist": "Parking lot name already exists"
+        "nameExist": "Parking lot name already exists",
+        "notFound": "Parking lot not found"
     },
     "create": "Parking lot create"
 }

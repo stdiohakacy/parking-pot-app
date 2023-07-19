@@ -54,9 +54,10 @@ export class UserEntity extends BaseEntity<UserDTO> implements IUserEntity {
     parkingLot?: ParkingLotEntity;
 
     register(payload: UserRegisterDTO) {
-        const { username, password, profile } = payload;
+        const { username, password, profile, parkingLotId } = payload;
         this.username = username;
         this.password = password;
         this.profile = profile;
+        this.parkingLotId = parkingLotId;
     }
 }

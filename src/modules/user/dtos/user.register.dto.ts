@@ -6,4 +6,5 @@ export class UserRegisterDTO extends PickType(UserDTO, [
     'password',
     'profile',
     'type',
+    'parkingLotId',
 ]) {}

@@ -5,6 +5,7 @@ import {
     IsEnum,
     IsNotEmpty,
     IsString,
+    IsUUID,
     MaxLength,
     MinLength,
 } from 'class-validator';
@@ -64,4 +65,14 @@ export class UserDTO extends BaseDTO {
     type: ENUM_USER_TYPE;
 
     profile: ProfileRegisterDTO;
+
+    @ApiProperty({
+        name: 'parkingLotId',
+        example: faker.string.uuid(),
+        required: true,
+    })
+    @IsUUID()
+    @IsNotEmpty()
+    @Type(() => String)
+    parkingLotId: string;
 }
