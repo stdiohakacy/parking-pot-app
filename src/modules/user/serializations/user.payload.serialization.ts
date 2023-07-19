@@ -30,66 +30,66 @@ export class UserPayloadSerialization extends OmitType(
     UserProfileSerialization,
     ['photo', 'signUpDate', 'createdAt', 'updatedAt'] as const
 ) {
-    @ApiHideProperty()
-    @Exclude()
-    readonly photo?: AwsS3Serialization;
+    // @ApiHideProperty()
+    // @Exclude()
+    // readonly photo?: AwsS3Serialization;
 
-    @ApiProperty({
-        example: [faker.string.uuid()],
-        type: 'string',
-        isArray: true,
-        required: true,
-        nullable: false,
-    })
-    @Transform(({ obj }) => `${obj.role._id}`)
-    readonly role: string;
+    // @ApiProperty({
+    //     example: [faker.string.uuid()],
+    //     type: 'string',
+    //     isArray: true,
+    //     required: true,
+    //     nullable: false,
+    // })
+    // @Transform(({ obj }) => `${obj.role._id}`)
+    // readonly role: string;
 
-    @ApiProperty({
-        example: ENUM_ROLE_TYPE.ADMIN,
-        type: 'string',
-        enum: ENUM_ROLE_TYPE,
-        required: true,
-        nullable: false,
-    })
-    @Expose()
-    @Transform(({ obj }) => obj.role.type)
-    readonly type: ENUM_ROLE_TYPE;
+    // @ApiProperty({
+    //     example: ENUM_ROLE_TYPE.ADMIN,
+    //     type: 'string',
+    //     enum: ENUM_ROLE_TYPE,
+    //     required: true,
+    //     nullable: false,
+    // })
+    // @Expose()
+    // @Transform(({ obj }) => obj.role.type)
+    // readonly type: ENUM_ROLE_TYPE;
 
-    @ApiProperty({
-        type: () => UserPayloadPermissionSerialization,
-        isArray: true,
-        required: true,
-        nullable: false,
-    })
-    @Transform(({ obj }) => {
-        return obj.role.permissions.map(({ action, subject }: IPolicyRule) => {
-            const ac = action.map(
-                (l) => ENUM_POLICY_REQUEST_ACTION[l.toUpperCase()]
-            );
-            return {
-                subject,
-                action: ac.join(','),
-            };
-        });
-    })
-    @Expose()
-    readonly permissions: UserPayloadPermissionSerialization[];
+    // @ApiProperty({
+    //     type: () => UserPayloadPermissionSerialization,
+    //     isArray: true,
+    //     required: true,
+    //     nullable: false,
+    // })
+    // @Transform(({ obj }) => {
+    //     return obj.role.permissions.map(({ action, subject }: IPolicyRule) => {
+    //         const ac = action.map(
+    //             (l) => ENUM_POLICY_REQUEST_ACTION[l.toUpperCase()]
+    //         );
+    //         return {
+    //             subject,
+    //             action: ac.join(','),
+    //         };
+    //     });
+    // })
+    // @Expose()
+    // readonly permissions: UserPayloadPermissionSerialization[];
 
-    @ApiHideProperty()
-    @Exclude()
-    readonly signUpDate: Date;
+    // @ApiHideProperty()
+    // @Exclude()
+    // readonly signUpDate: Date;
 
-    @ApiHideProperty()
-    @Exclude()
-    readonly signUpFrom: ENUM_USER_SIGN_UP_FROM;
+    // @ApiHideProperty()
+    // @Exclude()
+    // readonly signUpFrom: ENUM_USER_SIGN_UP_FROM;
 
-    @ApiProperty({
-        required: true,
-        nullable: false,
-        example: faker.date.recent(),
-    })
-    @Expose()
-    readonly loginDate: Date;
+    // @ApiProperty({
+    //     required: true,
+    //     nullable: false,
+    //     example: faker.date.recent(),
+    // })
+    // @Expose()
+    // readonly loginDate: Date;
 
     @ApiHideProperty()
     @Exclude()

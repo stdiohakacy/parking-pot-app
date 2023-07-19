@@ -13,6 +13,8 @@ import { ProfileDTO } from '../dtos/profile.dto';
 import { ParkingLotEntity } from '../../../modules/parking-lot/entities/parking-lot.entity';
 import { UserRegisterDTO } from '../dtos/user.register.dto';
 import { ProfileRegisterDTO } from '../dtos/profile.register.dto';
+import { UserPayloadSerialization } from '../serializations/user.payload.serialization';
+import { plainToInstance } from 'class-transformer';
 
 export interface IUserEntity extends IBaseEntity<UserDTO> {
     username: string;
@@ -59,5 +61,9 @@ export class UserEntity extends BaseEntity<UserDTO> implements IUserEntity {
         this.password = password;
         this.profile = profile;
         this.parkingLotId = parkingLotId;
+    }
+
+    payloadSerialization(): UserPayloadSerialization {
+        return plainToInstance(UserPayloadSerialization, this);
     }
 }

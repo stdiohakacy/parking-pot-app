@@ -25,7 +25,6 @@ export class UserRegisterHandler
         private readonly authService: AuthService
     ) {}
     async execute({ payload }: UserRegisterCommand) {
-        console.log(payload);
         const usernameExist = await this.userRepo.findOneByUsername(
             payload.username
         );

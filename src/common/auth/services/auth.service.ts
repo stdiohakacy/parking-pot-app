@@ -207,13 +207,13 @@ export class AuthService implements IAuthService {
     }
 
     async createPayloadRefreshToken(
-        _id: string,
-        options: IAuthPayloadOptions
+        id: string,
+        options?: IAuthPayloadOptions
     ): Promise<Record<string, any>> {
         return {
-            _id,
+            id,
             loginDate: this.helperDateService.create(),
-            loginWith: options.loginWith,
+            loginWith: options?.loginWith || '',
         };
     }
 

@@ -64,7 +64,7 @@ export default async function (app: NestApplication) {
             yamlDocumentUrl: `${docPrefix}/yaml`,
             explorer: false,
             customSiteTitle: docName,
-            customCss: theme.getBuffer('outline'),
+            customCss: theme.getBuffer('dark'),
             swaggerOptions: {
                 docExpansion: 'none',
                 persistAuthorization: true,

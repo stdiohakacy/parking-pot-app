@@ -5,8 +5,9 @@ import { UserRegisterHandler } from './commands/user.register.command';
 import { UserRepository } from './repositories/user.repository';
 import { AuthModule } from 'src/common/auth/auth.module';
 import { ParkingLotModule } from '../parking-lot/parking-lot.module';
+import { UserLoginHandler } from './commands/user.login.command';
 
-const commandHandlers = [UserRegisterHandler];
+const commandHandlers = [UserRegisterHandler, UserLoginHandler];
 const queryHandlers = [];
 
 @Module({
