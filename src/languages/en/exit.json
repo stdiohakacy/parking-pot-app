@@ -1,0 +1,7 @@
+{
+    "create":"Exit created",
+    "get":"Get exit",
+    "error": {
+        "notFound": "Exit not found!"
+    }
+}
