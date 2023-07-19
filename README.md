@@ -161,3 +161,31 @@ Parking floor: The parking lot should have multiple floors where customers can p
 Electric: The parking lot should have some parking spots specified for electric cars. These spots should have an electric panel through which customers can pay and charge their vehicles. The class diagram provided below shows the relationship of Electric and ElectricPanel with other classes:
 
 ====================================================================================
+
+Several design patterns can be applicable in the context of the above requirements. Here are some design patterns that can be considered:
+
+Singleton Pattern:
+The Singleton pattern can be used to ensure that there is only one instance of critical components such as the parking lot system, display board, or payment system. It helps in managing shared resources and maintaining consistency across the system.
+
+Factory Pattern:
+The Factory pattern can be utilized to create instances of different parking spot types or payment methods based on the input or requirements. It provides a centralized approach for creating objects, promoting flexibility and modularity.
+
+Strategy Pattern:
+The Strategy pattern can be applied to handle various payment methods (credit card, cash) or parking rate calculation strategies. It allows encapsulating different algorithms and selecting them dynamically based on runtime conditions.
+
+Observer Pattern:
+The Observer pattern can be employed to notify the display board or other relevant components about changes in the parking spot availability or ticket status. It enables loose coupling and efficient communication between different parts of the system.
+
+Command Pattern:
+The Command pattern can be useful for implementing actions related to ticket generation, payment processing, or updating parking spot status. It encapsulates requests as objects, providing flexibility and extensibility in handling user actions.
+
+Decorator Pattern:
+The Decorator pattern can be used to add additional functionalities or behavior to parking spots, such as marking a parking spot as handicapped or assigning it a priority status. It allows for dynamic modification of object behavior at runtime.
+
+State Pattern:
+The State pattern can be utilized to manage the different states of a parking ticket (e.g., paid, unpaid, expired) or parking spot (e.g., occupied, available). It helps in organizing and encapsulating state-specific behavior and transitions.
+
+Proxy Pattern:
+The Proxy pattern can be applied to provide controlled access to sensitive or expensive operations, such as payment processing or vehicle entry/exit. It adds a layer of abstraction and enables additional functionality before or after the actual operation.
+
+It's important to note that the choice of design patterns may vary based on the specific implementation and architectural considerations. The above patterns provide a starting point and can be adapted and combined as per the requirements and system design.

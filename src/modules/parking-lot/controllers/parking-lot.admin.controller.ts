@@ -11,7 +11,7 @@ import { ApiTags } from '@nestjs/swagger';
 import {
     Response,
     ResponsePaging,
-} from 'src/common/response/decorators/response.decorator';
+} from '../../../common/response/decorators/response.decorator';
 import { ParkingLotCreateDTO } from '../dtos/parking-lot.create.dto';
 import { ParkingLotCreateCommand } from '../commands/parking-lot.create.command';
 import {
@@ -19,8 +19,8 @@ import {
     ParkingLotAdminGetDoc,
     ParkingLotAdminListDoc,
 } from '../docs/parking-lot.admin.doc';
-import { PaginationQuery } from 'src/common/pagination/decorators/pagination.decorator';
-import { PaginationListDTO } from 'src/common/pagination/dtos/pagination.list.dto';
+import { PaginationQuery } from '../../../common/pagination/decorators/pagination.decorator';
+import { PaginationListDTO } from '../../../common/pagination/dtos/pagination.list.dto';
 import {
     PARKING_LOT_DEFAULT_AVAILABLE_ORDER_BY,
     PARKING_LOT_DEFAULT_AVAILABLE_SEARCH,
@@ -31,11 +31,11 @@ import {
 import {
     IResponse,
     IResponsePaging,
-} from 'src/common/response/interfaces/response.interface';
+} from '../../../common/response/interfaces/response.interface';
 import { ParkingLotListQuery } from '../queries/parking-lot.list.query';
 import { ParkingLotListSerialization } from '../serializations/parking-lot.list.serialization';
 import { ParkingLotGetSerialization } from '../serializations/parking-lot.get.serialization';
-import { RequestParamGuard } from 'src/common/request/decorators/request.decorator';
+import { RequestParamGuard } from '../../../common/request/decorators/request.decorator';
 import { ParkingLotRequestDTO } from '../dtos/parking-lot.request.dto';
 import { ParkingLotGetQuery } from '../queries/parking-lot.get.query';
 

@@ -10,6 +10,7 @@ import { Admin } from '../instances/admin';
 import { ParkingAgent } from '../instances/parking-agent';
 import { ParkingLotRepository } from 'src/modules/parking-lot/repositories/parking-lot.repository';
 import { ENUM_PARKING_LOT_STATUS_CODE_ERROR } from 'src/modules/parking-lot/constants/parking-lot.status-code.constant';
+import { UserEntity } from '../entities/user.entity';
 
 export class UserRegisterCommand implements ICommand {
     constructor(public readonly payload: UserRegisterDTO) {}
@@ -52,7 +53,7 @@ export class UserRegisterHandler
             payload.password
         );
         payload.password = passwordAuth.passwordHash;
-        let user = null;
+        let user: UserEntity = null;
         if (payload.type === ENUM_USER_TYPE.ADMIN) {
             user = new Admin();
         } else if (payload.type === ENUM_USER_TYPE.PARKING_AGENT) {
