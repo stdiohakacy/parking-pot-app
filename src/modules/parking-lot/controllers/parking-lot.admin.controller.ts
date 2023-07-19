@@ -1,15 +1,22 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Get,
+    Param,
+    ParseUUIDPipe,
+    Post,
+} from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
 import {
     Response,
     ResponsePaging,
 } from 'src/common/response/decorators/response.decorator';
-import { UserEntity } from 'src/modules/user/entities/user.entity';
 import { ParkingLotCreateDTO } from '../dtos/parking-lot.create.dto';
 import { ParkingLotCreateCommand } from '../commands/parking-lot.create.command';
 import {
     ParkingLotAdminCreateDoc,
+    ParkingLotAdminGetDoc,
     ParkingLotAdminListDoc,
 } from '../docs/parking-lot.admin.doc';
 import { PaginationQuery } from 'src/common/pagination/decorators/pagination.decorator';
@@ -21,9 +28,16 @@ import {
     PARKING_LOT_DEFAULT_ORDER_DIRECTION,
     PARKING_LOT_DEFAULT_PER_PAGE,
 } from '../constants/parking-lot.list.constant';
-import { IResponsePaging } from 'src/common/response/interfaces/response.interface';
+import {
+    IResponse,
+    IResponsePaging,
+} from 'src/common/response/interfaces/response.interface';
 import { ParkingLotListQuery } from '../queries/parking-lot.list.query';
 import { ParkingLotListSerialization } from '../serializations/parking-lot.list.serialization';
+import { ParkingLotGetSerialization } from '../serializations/parking-lot.get.serialization';
+import { RequestParamGuard } from 'src/common/request/decorators/request.decorator';
+import { ParkingLotRequestDTO } from '../dtos/parking-lot.request.dto';
+import { ParkingLotGetQuery } from '../queries/parking-lot.get.query';
 
 @ApiTags('modules.admin.parking-lot')
 @Controller({ version: '1', path: '/parking-lots' })
@@ -66,5 +80,13 @@ export class ParkingLotAdminController {
         return await this.queryBus.execute(
             new ParkingLotListQuery(find, pagination)
         );
+    }
+
+    @ParkingLotAdminGetDoc()
+    @Response('parkingLot.get', { serialization: ParkingLotGetSerialization })
+    @RequestParamGuard(ParkingLotRequestDTO)
+    @Get('/:id')
+    async get(@Param() { id }: ParkingLotRequestDTO): Promise<IResponse> {
+        return await this.queryBus.execute(new ParkingLotGetQuery(id));
     }
 }

@@ -1,8 +1,9 @@
 {
     "error": {
-        "nameExist": "Parking lot name already exists",
-        "notFound": "Parking lot not found"
+        "nameExist": "Parking lot name already exists!",
+        "notFound": "Parking lot not found!"
     },
-    "create": "Parking lot create",
-    "list": "Parking lot list"
+    "create": "Parking lot create.",
+    "list": "Parking lot list.",
+    "get": "Parking lot get success."
 }
