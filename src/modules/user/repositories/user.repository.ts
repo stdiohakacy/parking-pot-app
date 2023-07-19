@@ -13,7 +13,8 @@ export class UserRepository
 {
     async findAllAndCount(
         find: Record<string, any>,
-        pagination: PaginationListDTO
+        pagination: PaginationListDTO,
+        options?: Record<string, any>
     ) {
         const { _limit, _offset, _order } = pagination;
         return await this.userRepo.findAndCount({
@@ -21,6 +22,7 @@ export class UserRepository
             take: _limit,
             skip: _offset,
             order: _order,
+            select: options.select,
         });
     }
     constructor(

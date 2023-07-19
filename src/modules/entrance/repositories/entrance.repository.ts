@@ -20,7 +20,8 @@ export class EntranceRepository
     }
     async findAllAndCount(
         find: Record<string, any>,
-        pagination: PaginationListDTO
+        pagination: PaginationListDTO,
+        options?: Record<string, any>
     ) {
         const { _limit, _offset, _order } = pagination;
         return await this.entranceRepo.findAndCount({
@@ -28,6 +29,7 @@ export class EntranceRepository
             take: _limit,
             skip: _offset,
             order: _order,
+            select: options.select,
         });
     }
     async findOneById(id: string): Promise<EntranceEntity> {

@@ -6,8 +6,10 @@ import {
     DocGuard,
     DocRequest,
     DocResponse,
+    DocResponsePaging,
 } from '../../../common/doc/decorators/doc.decorator';
 import { InsertResult } from 'typeorm';
+import { EntranceListSerialization } from '../serializations/parking-lot.list.serialization';
 
 export function EntranceAdminCreateDoc(): MethodDecorator {
     return applyDecorators(
@@ -18,6 +20,18 @@ export function EntranceAdminCreateDoc(): MethodDecorator {
         DocResponse<InsertResult>('entrance.create', {
             httpStatus: HttpStatus.CREATED,
             serialization: InsertResult,
+        })
+    );
+}
+
+export function EntranceAdminListDoc(): MethodDecorator {
+    return applyDecorators(
+        Doc({ operation: 'modules.admin.entrance' }),
+        DocRequest({ queries: [] }),
+        DocAuth({ jwtAccessToken: true }),
+        DocGuard({ role: true, policy: true }),
+        DocResponsePaging<EntranceListSerialization>('entrance.list', {
+            serialization: EntranceListSerialization,
         })
     );
 }
