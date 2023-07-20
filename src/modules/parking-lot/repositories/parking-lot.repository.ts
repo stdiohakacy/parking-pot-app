@@ -1,4 +1,10 @@
-import { UpdateResult, DeleteResult, Repository, InsertResult } from 'typeorm';
+import {
+    UpdateResult,
+    DeleteResult,
+    Repository,
+    InsertResult,
+    In,
+} from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { IParkingLotRepository } from '../interfaces/parking-lot.repository.interface';
@@ -57,5 +63,9 @@ export class ParkingLotRepository
 
     async delete(id: string): Promise<DeleteResult> {
         return await this.parkingLotRepo.delete(id);
+    }
+
+    async truncate(): Promise<void> {
+        await this.parkingLotRepo.delete({});
     }
 }

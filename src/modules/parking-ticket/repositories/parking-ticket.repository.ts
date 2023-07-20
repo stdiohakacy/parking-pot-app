@@ -51,4 +51,8 @@ export class ParkingTicketRepository
     async delete(id: string): Promise<DeleteResult> {
         return await this.parkingTicketRepo.delete(id);
     }
+
+    async truncate(): Promise<void> {
+        return await this.parkingTicketRepo.clear();
+    }
 }

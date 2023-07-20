@@ -2,7 +2,7 @@ import { UpdateResult, DeleteResult, InsertResult } from 'typeorm';
 import { BaseDTO } from '../dto/base.dto';
 import { PaginationListDTO } from '../../../common/pagination/dtos/pagination.list.dto';
 
-export abstract class BaseRepository<DTO extends BaseDTO> {
+export abstract class BaseRepository<T> {
     abstract findOneById(id: string);
 
     abstract findAllAndCount(
@@ -11,9 +11,11 @@ export abstract class BaseRepository<DTO extends BaseDTO> {
         options?: Record<string, any>
     );
 
-    abstract create(entity: DTO): Promise<InsertResult>;
+    abstract create(entity: T): Promise<InsertResult>;
 
-    abstract update(id: string, entity: Partial<DTO>): Promise<UpdateResult>;
+    abstract update(id: string, entity: Partial<T>): Promise<UpdateResult>;
 
     abstract delete(id: string): Promise<DeleteResult>;
+
+    abstract truncate(): Promise<void>;
 }

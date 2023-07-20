@@ -48,4 +48,7 @@ export class EntranceRepository
     async delete(id: string): Promise<DeleteResult> {
         return await this.entranceRepo.delete(id);
     }
+    async truncate(): Promise<void> {
+        return this.entranceRepo.clear();
+    }
 }

@@ -19,6 +19,13 @@ export abstract class ParkingSpotEntity
     extends BaseEntity<ParkingSpotDTO>
     implements IParkingSpotEntity
 {
+    constructor(data: any) {
+        super();
+        this.id = data?.id;
+        this.parkingLotId = data?.parkingLotId;
+        this.isFree = data?.isFree;
+    }
+
     @Column({ name: 'isFree', default: true })
     isFree: boolean;
 
@@ -34,7 +41,4 @@ export abstract class ParkingSpotEntity
 
     @OneToMany(() => VehicleEntity, (vehicles) => vehicles.parkingSpot)
     vehicles: VehicleEntity[];
-
-    abstract getIsFree(): boolean;
-    abstract getType(): ENUM_PARKING_SPOT_TYPE;
 }

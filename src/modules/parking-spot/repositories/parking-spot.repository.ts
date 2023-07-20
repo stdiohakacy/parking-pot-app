@@ -41,8 +41,8 @@ export class ParkingSpotRepository
     ) {
         throw new Error('Method not implemented.');
     }
-    create(entity: ParkingSpotEntity): Promise<InsertResult> {
-        throw new Error('Method not implemented.');
+    async create(entity: ParkingSpotEntity): Promise<InsertResult> {
+        return await this.parkingSpotRepo.insert(entity);
     }
     async update(
         id: string,
@@ -52,5 +52,8 @@ export class ParkingSpotRepository
     }
     delete(id: string): Promise<DeleteResult> {
         throw new Error('Method not implemented.');
+    }
+    async truncate(): Promise<void> {
+        await this.parkingSpotRepo.delete({});
     }
 }

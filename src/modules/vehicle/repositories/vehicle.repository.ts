@@ -52,4 +52,8 @@ export class VehicleRepository
     async delete(id: string): Promise<DeleteResult> {
         return await this.vehicleRepo.delete(id);
     }
+
+    async truncate(): Promise<void> {
+        return await this.vehicleRepo.clear();
+    }
 }

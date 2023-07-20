@@ -54,4 +54,8 @@ export class UserRepository
     async delete(id: string): Promise<DeleteResult> {
         return await this.userRepo.delete(id);
     }
+
+    async truncate(): Promise<void> {
+        return await this.userRepo.clear();
+    }
 }

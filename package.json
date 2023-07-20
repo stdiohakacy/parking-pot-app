@@ -22,7 +22,13 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "migration:generate": "yarn run typeorm migration:generate -d ormconfig",
     "migration:create": "yarn run typeorm migration:create -d ormconfig",
-    "migration:run": "yarn run typeorm migration:run -d ormconfig"
+    "migration:run": "yarn run typeorm migration:run -d ormconfig",
+    "rollback:parking-lot": "nestjs-command remove:parking-lot",
+    "rollback:parking-spot": "nestjs-command remove:parking-spot",
+    "seed:parking-lot": "nestjs-command seed:parking-lot",
+    "seed:parking-spot": "nestjs-command seed:parking-spot",
+    "seed": "yarn seed:parking-lot && yarn seed:parking-spot",
+    "rollback": "yarn rollback:parking-spot && yarn rollback:parking-lot"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.370.0",

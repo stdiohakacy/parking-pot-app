@@ -49,4 +49,7 @@ export class ExitRepository
     async delete(id: string): Promise<DeleteResult> {
         return await this.exitRepo.delete(id);
     }
+    async truncate(): Promise<void> {
+        return this.exitRepo.clear();
+    }
 }
