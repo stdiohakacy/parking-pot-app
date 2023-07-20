@@ -56,6 +56,6 @@ export class UserRepository
     }
 
     async truncate(): Promise<void> {
-        return await this.userRepo.clear();
+        await this.userRepo.delete({});
     }
 }

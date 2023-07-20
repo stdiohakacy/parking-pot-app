@@ -25,6 +25,15 @@ export interface IUserEntity extends IBaseEntity<UserDTO> {
 @Entity({ name: 'users' })
 @UseDTO(UserDTO)
 export class UserEntity extends BaseEntity<UserDTO> implements IUserEntity {
+    constructor(data: any) {
+        super();
+        this.username = data?.username;
+        this.password = data?.password;
+        this.type = data?.type;
+        this.status = data?.status;
+        this.profile = data?.profile;
+        this.parkingLotId = data?.parkingLotId;
+    }
     @Column({ name: 'username' })
     username: string;
 

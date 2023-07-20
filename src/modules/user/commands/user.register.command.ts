@@ -5,7 +5,10 @@ import { UserRepository } from '../repositories/user.repository';
 import { ConflictException, NotFoundException } from '@nestjs/common';
 import { ENUM_USER_STATUS_CODE_ERROR } from '../constants/user.status-code.constant';
 import { AuthService } from '../../../common/auth/services/auth.service';
-import { ENUM_USER_TYPE } from '../constants/user.enum.constant';
+import {
+    ENUM_USER_STATUS,
+    ENUM_USER_TYPE,
+} from '../constants/user.enum.constant';
 import { Admin } from '../instances/admin';
 import { ParkingAgent } from '../instances/parking-agent';
 import { ParkingLotRepository } from '../../../modules/parking-lot/repositories/parking-lot.repository';
@@ -55,9 +58,15 @@ export class UserRegisterHandler
         payload.password = passwordAuth.passwordHash;
         let user: UserEntity = null;
         if (payload.type === ENUM_USER_TYPE.ADMIN) {
-            user = new Admin();
+            user = new Admin({
+                status: ENUM_USER_STATUS.ACTIVE,
+                ...payload,
+            });
         } else if (payload.type === ENUM_USER_TYPE.PARKING_AGENT) {
-            user = new ParkingAgent();
+            user = new ParkingAgent({
+                status: ENUM_USER_STATUS.ACTIVE,
+                ...payload,
+            });
         }
         user.register(payload);
         return await this.userRepo.create(user);

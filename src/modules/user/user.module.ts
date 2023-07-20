@@ -16,7 +16,7 @@ const queryHandlers = [];
         AuthModule,
         ParkingLotModule,
     ],
-    exports: [],
+    exports: [UserRepository],
     providers: [...commandHandlers, UserRepository],
     controllers: [],
 })
