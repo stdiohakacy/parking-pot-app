@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { UserRegisterHandler } from './commands/user.register.command';
 import { UserRepository } from './repositories/user.repository';
-import { AuthModule } from 'src/common/auth/auth.module';
+import { AuthModule } from '../../common/auth/auth.module';
 import { ParkingLotModule } from '../parking-lot/parking-lot.module';
 import { UserLoginHandler } from './commands/user.login.command';
 

@@ -1,7 +1,7 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { ApiTags } from '@nestjs/swagger';
-import { Response } from 'src/common/response/decorators/response.decorator';
+import { Response } from '../../../common/response/decorators/response.decorator';
 import {
     UserPublicLoginDoc,
     UserPublicRegisterDoc,

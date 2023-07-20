@@ -18,6 +18,7 @@ export class EntranceRepository
     ) {
         super();
     }
+
     async findAllAndCount(
         find: Record<string, any>,
         pagination: PaginationListDTO,

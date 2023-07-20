@@ -9,11 +9,11 @@ import {
 import {
     Response,
     ResponsePaging,
-} from 'src/common/response/decorators/response.decorator';
+} from '../../../common/response/decorators/response.decorator';
 import { ExitCreateDTO } from '../dtos/exit.create.dto';
 import { ExitCreateCommand } from '../commands/exit.create.command';
-import { EntranceListSerialization } from 'src/modules/entrance/serializations/parking-lot.list.serialization';
-import { PaginationQuery } from 'src/common/pagination/decorators/pagination.decorator';
+import { EntranceListSerialization } from '../../../modules/entrance/serializations/parking-lot.list.serialization';
+import { PaginationQuery } from '../../../common/pagination/decorators/pagination.decorator';
 import {
     EXIT_DEFAULT_AVAILABLE_ORDER_BY,
     EXIT_DEFAULT_AVAILABLE_SEARCH,
@@ -21,14 +21,14 @@ import {
     EXIT_DEFAULT_ORDER_DIRECTION,
     EXIT_DEFAULT_PER_PAGE,
 } from '../constants/entrance.list.constant';
-import { PaginationListDTO } from 'src/common/pagination/dtos/pagination.list.dto';
+import { PaginationListDTO } from '../../../common/pagination/dtos/pagination.list.dto';
 import {
     IResponse,
     IResponsePaging,
-} from 'src/common/response/interfaces/response.interface';
+} from '../../../common/response/interfaces/response.interface';
 import { ExitListQuery } from '../queries/exit.list.query';
 import { ExitGetSerialization } from '../serializations/exit.get.serialization';
-import { RequestParamGuard } from 'src/common/request/decorators/request.decorator';
+import { RequestParamGuard } from '../../../common/request/decorators/request.decorator';
 import { ExitRequestDTO } from '../dtos/exit.request.dto';
 import { ExitGetQuery } from '../queries/exit.get.query';
 

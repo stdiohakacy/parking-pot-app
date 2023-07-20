@@ -8,7 +8,7 @@ import {
     NotFoundException,
 } from '@nestjs/common';
 import { ENUM_USER_STATUS_CODE_ERROR } from '../constants/user.status-code.constant';
-import { AuthService } from 'src/common/auth/services/auth.service';
+import { AuthService } from '../../../common/auth/services/auth.service';
 import { ENUM_USER_STATUS } from '../constants/user.enum.constant';
 import { instanceToPlain } from 'class-transformer';
 

@@ -15,6 +15,14 @@ export class ParkingTicketEntity
     extends BaseEntity<ParkingTicketDTO>
     implements IParkingTicket
 {
+    constructor(data: any) {
+        super();
+        this.ticketNo = data?.ticketNo;
+        this.timestamp = data?.timestamp;
+        this.exit = data?.exit;
+        this.amount = data?.amount;
+        this.parkingLotId = data?.parkingLotId;
+    }
     @Column({ name: 'ticketNo' })
     ticketNo: string;
 

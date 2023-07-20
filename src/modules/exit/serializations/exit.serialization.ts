@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
-import { ResponseIdSerialization } from 'src/common/response/serializations/response.id.serialization';
+import { ResponseIdSerialization } from '../../../common/response/serializations/response.id.serialization';
 
 export class ExitSerialization extends ResponseIdSerialization {
     @ApiProperty({

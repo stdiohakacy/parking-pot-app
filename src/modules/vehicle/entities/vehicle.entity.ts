@@ -18,6 +18,10 @@ export abstract class VehicleEntity
     extends BaseEntity<VehicleDTO>
     implements IVehicleEntity
 {
+    constructor(data: any) {
+        super();
+    }
+
     @Column({ name: 'licenseNo' })
     licenseNo: string;
 

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CommandModule } from 'nestjs-command';
-import { CommonModule } from 'src/common/common.module';
+import { CommonModule } from '../common/common.module';
 
 @Module({
     imports: [CommandModule, CommonModule],

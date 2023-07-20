@@ -1,10 +1,10 @@
 import { HttpStatus, applyDecorators } from '@nestjs/common';
-import { ENUM_DOC_REQUEST_BODY_TYPE } from 'src/common/doc/constants/doc.enum.constant';
+import { ENUM_DOC_REQUEST_BODY_TYPE } from '../../../common/doc/constants/doc.enum.constant';
 import {
     Doc,
     DocRequest,
     DocResponse,
-} from 'src/common/doc/decorators/doc.decorator';
+} from '../../../common/doc/decorators/doc.decorator';
 import { UserLoginSerialization } from '../serializations/user.login.serialization';
 
 export function UserPublicRegisterDoc(): MethodDecorator {

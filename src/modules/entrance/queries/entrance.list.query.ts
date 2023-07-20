@@ -1,6 +1,6 @@
 import { IQuery, IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { PaginationListDTO } from 'src/common/pagination/dtos/pagination.list.dto';
-import { PaginationService } from 'src/common/pagination/services/pagination.service';
+import { PaginationListDTO } from '../../../common/pagination/dtos/pagination.list.dto';
+import { PaginationService } from '../../../common/pagination/services/pagination.service';
 import { EntranceRepository } from '../repositories/entrance.repository';
 
 export class EntranceListQuery implements IQuery {

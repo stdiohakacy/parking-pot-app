@@ -3,8 +3,8 @@ import { UpdateResult, DeleteResult, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { IUserRepository } from '../interfaces/user.repository.interface';
-import { BaseRepository } from 'src/common/base/repository/base.repository.abstract';
-import { PaginationListDTO } from 'src/common/pagination/dtos/pagination.list.dto';
+import { BaseRepository } from '../../../common/base/repository/base.repository.abstract';
+import { PaginationListDTO } from '../../../common/pagination/dtos/pagination.list.dto';
 
 @Injectable()
 export class UserRepository

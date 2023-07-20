@@ -1,7 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+    IsDate,
+    IsNotEmpty,
+    IsNumber,
+    IsString,
+    IsUUID,
+} from 'class-validator';
 import { BaseDTO } from '../../../common/base/dto/base.dto';
+import { faker } from '@faker-js/faker';
 
 export class ParkingTicketDTO extends BaseDTO {
     @ApiProperty({
@@ -29,4 +36,16 @@ export class ParkingTicketDTO extends BaseDTO {
     @IsNumber()
     @IsNotEmpty()
     amount: number;
+
+    @ApiProperty({
+        name: 'parkingLotId',
+        example: faker.string.uuid(),
+        required: true,
+        description: 'id of parking lot',
+    })
+    @IsString()
+    @IsUUID()
+    @IsNotEmpty()
+    @Type(() => String)
+    parkingLotId: string;
 }

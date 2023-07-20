@@ -3,9 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Injectable } from '@nestjs/common';
 import { IParkingLotRepository } from '../interfaces/parking-lot.repository.interface';
 import { ParkingLotEntity } from '../entities/parking-lot.entity';
-import { BaseRepository } from 'src/common/base/repository/base.repository.abstract';
+import { BaseRepository } from '../../../common/base/repository/base.repository.abstract';
 import { ParkingLotCreateDTO } from '../dtos/parking-lot.create.dto';
-import { PaginationListDTO } from 'src/common/pagination/dtos/pagination.list.dto';
+import { PaginationListDTO } from '../../../common/pagination/dtos/pagination.list.dto';
 
 @Injectable()
 export class ParkingLotRepository

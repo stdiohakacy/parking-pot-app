@@ -1,15 +1,15 @@
 import {
-  ENUM_POLICY_ACTION,
-  ENUM_POLICY_SUBJECT,
-} from 'src/common/policy/constants/policy.enum.constant';
+    ENUM_POLICY_ACTION,
+    ENUM_POLICY_SUBJECT,
+} from '../../../common/policy/constants/policy.enum.constant';
 
 export interface IPolicyRule {
-  subject: ENUM_POLICY_SUBJECT;
-  action: ENUM_POLICY_ACTION[];
+    subject: ENUM_POLICY_SUBJECT;
+    action: ENUM_POLICY_ACTION[];
 }
 export interface IPolicyRuleAbility {
-  subject: ENUM_POLICY_SUBJECT;
-  action: ENUM_POLICY_ACTION;
+    subject: ENUM_POLICY_SUBJECT;
+    action: ENUM_POLICY_ACTION;
 }
 
 // export type IPolicySubjectAbility = InferSubjects<ENUM_POLICY_SUBJECT> | 'all';

@@ -13,12 +13,12 @@ import {
     EntranceAdminListDoc,
 } from '../docs/entrance.admin.doc';
 import { EntranceListSerialization } from '../serializations/parking-lot.list.serialization';
-import { PaginationQuery } from 'src/common/pagination/decorators/pagination.decorator';
-import { PaginationListDTO } from 'src/common/pagination/dtos/pagination.list.dto';
+import { PaginationQuery } from '../../../common/pagination/decorators/pagination.decorator';
+import { PaginationListDTO } from '../../../common/pagination/dtos/pagination.list.dto';
 import {
     IResponse,
     IResponsePaging,
-} from 'src/common/response/interfaces/response.interface';
+} from '../../../common/response/interfaces/response.interface';
 import {
     ENTRANCE_DEFAULT_AVAILABLE_ORDER_BY,
     ENTRANCE_DEFAULT_AVAILABLE_SEARCH,
@@ -28,7 +28,7 @@ import {
 } from '../constants/entrance.list.constant';
 import { EntranceListQuery } from '../queries/entrance.list.query';
 import { EntranceGetSerialization } from '../serializations/entrance.get.serialization';
-import { RequestParamGuard } from 'src/common/request/decorators/request.decorator';
+import { RequestParamGuard } from '../../../common/request/decorators/request.decorator';
 import { EntranceRequestDTO } from '../dtos/entrance.request.dto';
 import { EntranceGetQuery } from '../queries/entrance.get.query';
 

@@ -6,7 +6,7 @@ import {
     DocRequest,
     DocResponse,
     DocResponsePaging,
-} from 'src/common/doc/decorators/doc.decorator';
+} from '../../../common/doc/decorators/doc.decorator';
 import { ParkingLotListSerialization } from '../serializations/parking-lot.list.serialization';
 import { ParkingLotGetSerialization } from '../serializations/parking-lot.get.serialization';
 import { ParkingLotDocParamsId } from '../constants/parking-lot.doc.constant';
