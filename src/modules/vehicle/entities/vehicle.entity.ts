@@ -20,6 +20,8 @@ export abstract class VehicleEntity
 {
     constructor(data: any) {
         super();
+        this.licenseNo = data?.licenseNo;
+        this.parkingSpotId = data?.parkingSpotId;
     }
 
     @Column({ name: 'licenseNo' })

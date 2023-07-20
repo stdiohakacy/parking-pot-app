@@ -11,6 +11,7 @@ import {
 import { Injectable } from '@nestjs/common';
 import { ParkingSpotEntity } from '../entities/parking-spot.entity';
 import { IParkingSpotRepository } from '../interfaces/parking-spot.repository.interface';
+import { ENUM_PARKING_SPOT_TYPE } from '../constants/parking-spot.enum.constant';
 
 @Injectable()
 export class ParkingSpotRepository
@@ -43,11 +44,11 @@ export class ParkingSpotRepository
     create(entity: ParkingSpotEntity): Promise<InsertResult> {
         throw new Error('Method not implemented.');
     }
-    update(
+    async update(
         id: string,
         entity: Partial<ParkingSpotEntity>
     ): Promise<UpdateResult> {
-        throw new Error('Method not implemented.');
+        return await this.parkingSpotRepo.update(id, entity);
     }
     delete(id: string): Promise<DeleteResult> {
         throw new Error('Method not implemented.');

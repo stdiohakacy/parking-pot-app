@@ -15,7 +15,7 @@ export class ParkingLotPublicController {
     ) {}
 
     @ParkingLotPublicCreateTicketDoc()
-    @Response('parkingLot.create')
+    @Response('parkingLot.createParkingTicket')
     @Post('/parking-tickets')
     async createParkingTicket(@Body() payload: ParkingTicketCreateDTO) {
         return await this.commandBus.execute(

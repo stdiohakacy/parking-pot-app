@@ -3,6 +3,7 @@
         "nameExist": "Parking lot name already exists!",
         "notFound": "Parking lot not found!"
     },
+    "createParkingTicket": "Create parking ticket success.",
     "create": "Parking lot create.",
     "list": "Parking lot list.",
     "get": "Parking lot get success."

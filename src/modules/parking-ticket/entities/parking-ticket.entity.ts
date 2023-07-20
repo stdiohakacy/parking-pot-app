@@ -38,8 +38,8 @@ export class ParkingTicketEntity
     @Column({ type: 'uuid', name: 'parkingLotId' })
     parkingLotId: string;
 
-    @Column({ type: 'uuid', name: 'paymentId' })
-    paymentId: string;
+    @Column({ type: 'uuid', name: 'paymentId', nullable: true })
+    paymentId?: string;
 
     @ManyToOne(
         () => ParkingLotEntity,

@@ -1,8 +1,6 @@
 import { CommandHandler, ICommand, ICommandHandler } from '@nestjs/cqrs';
 import { ParkingTicketCreateDTO } from '../dtos/parking-ticket.create.dto';
-import { InsertResult } from 'typeorm';
-import { BadRequestException, NotFoundException } from '@nestjs/common';
-import { ENUM_EXIT_STATUS_CODE_ERROR } from '../../../modules/exit/constants/entrance.status-code.constant';
+import { BadRequestException } from '@nestjs/common';
 import { ParkingLotRepository } from '../../../modules/parking-lot/repositories/parking-lot.repository';
 import { ParkingSpotRepository } from '../../../modules/parking-spot/repositories/parking-spot.repository';
 import { ENUM_VEHICLE_TYPE } from '../../../modules/vehicle/constants/vehicle.enum.constant';
@@ -20,6 +18,8 @@ import { ParkingTicketRepository } from '../repositories/parking-ticket.reposito
 import { ParkingTicketEntity } from '../entities/parking-ticket.entity';
 import { HelperDateService } from '../../../common/helper/services/helper.date.service';
 import { generateParkingTicketNo } from '../helpers/parking-ticket.helper';
+import { instanceToPlain } from 'class-transformer';
+import { IResponse } from '../../../common/response/interfaces/response.interface';
 
 export class ParkingTicketCreateCommand implements ICommand {
     constructor(public readonly payload: ParkingTicketCreateDTO) {}
@@ -27,7 +27,7 @@ export class ParkingTicketCreateCommand implements ICommand {
 
 @CommandHandler(ParkingTicketCreateCommand)
 export class ParkingTicketCreateHandler
-    implements ICommandHandler<ParkingTicketCreateCommand, InsertResult>
+    implements ICommandHandler<ParkingTicketCreateCommand, IResponse>
 {
     constructor(
         private readonly parkingSpotRepo: ParkingSpotRepository,
@@ -36,7 +36,7 @@ export class ParkingTicketCreateHandler
         private readonly parkingTicketRepo: ParkingTicketRepository,
         private readonly helperDateService: HelperDateService
     ) {}
-    async execute({ payload }: ParkingTicketCreateCommand) {
+    async execute({ payload }: ParkingTicketCreateCommand): Promise<IResponse> {
         let { vehicleType, licenseNo, parkingLotId } = payload;
         let parkingSpotType = null;
         let vehicle: VehicleEntity = null;
@@ -74,19 +74,18 @@ export class ParkingTicketCreateHandler
             });
         }
 
-        const parkingSpot = await this.parkingSpotRepo.findAll({
+        const parkingSpots = await this.parkingSpotRepo.findAll({
             where: { type: parkingSpotType, isFree: true, parkingLotId },
         });
 
-        if (!parkingSpot) {
+        if (!parkingSpots.length) {
             throw new BadRequestException({
                 statusCode:
                     ENUM_PARKING_SPOT_STATUS_CODE_ERROR.PARKING_SPOT_FREE_ERROR,
                 message: 'parkingSpot.error.isFree',
             });
         }
-
-        // await this.vehicleRepo.create(vehicle);
+        vehicle.parkingSpotId = parkingSpots[0].id;
 
         const parkingTicketCreated = await this.parkingTicketRepo.create(
             new ParkingTicketEntity({
@@ -95,25 +94,14 @@ export class ParkingTicketCreateHandler
                 parkingLotId,
             })
         );
-        console.log(parkingTicketCreated.raw[0]);
 
-        return null;
+        await Promise.all([
+            this.vehicleRepo.create(vehicle),
+            this.parkingSpotRepo.update(parkingSpots[0].id, {
+                isFree: false,
+            }),
+        ]);
 
-        // const parkingSpot = await this.parkingSpotRepo.findAll({
-        //     where: { isFree: true, type: vehicleType },
-        // });
-        // check parking spot for this vehicle is free or not
-
-        // const { timestamp, licenseNo, parkingLotId } = payload;
-        // const parkingLotExist = await this.parkingLotRepo.findOneById(
-        //     parkingLotId
-        // );
-        // if (!parkingLotExist) {
-        //     throw new NotFoundException({
-        //         statusCode: ENUM_EXIT_STATUS_CODE_ERROR.EXIT_NOT_FOUND_ERROR,
-        //         message: 'parkingLot.error.notFound',
-        //     });
-        // }
-        // return await this.exitRepo.create(payload);
+        return instanceToPlain({ data: parkingTicketCreated });
     }
 }
