@@ -11,6 +11,12 @@ export class UserRepository
     extends BaseRepository<UserEntity>
     implements IUserRepository
 {
+    constructor(
+        @InjectRepository(UserEntity)
+        private userRepo: Repository<UserEntity>
+    ) {
+        super();
+    }
     async findAllAndCount(
         find: Record<string, any>,
         pagination: PaginationListDTO,
@@ -24,12 +30,6 @@ export class UserRepository
             order: _order,
             select: options.select,
         });
-    }
-    constructor(
-        @InjectRepository(UserEntity)
-        private userRepo: Repository<UserEntity>
-    ) {
-        super();
     }
 
     async findOneByUsername(username: string): Promise<UserEntity> {
